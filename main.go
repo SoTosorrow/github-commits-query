@@ -22,14 +22,14 @@ func concatLastCommitUrl(repInfo RepInfo) {
 Steps As
 
 	From "https://github.com/dotnet/runtime" get Commit Number
-	From "https://github.com/dotnet/runtime/commits/main/" get First Commit Id (by html:script-payload)
+	From html's script above get First Commit Id (by html:script-payload)
 	join string with "id" and "commit nums" for last Commit url like
 	 https://github.com/{userName}/{repName}/commits/{branchName}?after={firstCommitId}+{commit nums - 2}
 */
 func main() {
 	args := os.Args
 	if len(args) != 2 {
-		Ulog("cmd params nums not match")
+		Ulogf("cmd params nums not match")
 	}
 	repName := args[1]
 	url := "https://github.com/" + repName
@@ -37,10 +37,13 @@ func main() {
 		RepName: repName,
 		RepUrl:  url,
 	}
-	doc := ReqRepHomePage(url)
+	doc := Req2Doc(url)
 	repInfo.NumCommits = ParseCommitsNum(doc)
 	repInfo.firstCommitId = ParseFirstCommitId(doc)
 	repInfo.RepBranchName = ParseBranchName(doc)
 	Ulog("repInfo:", repInfo)
 	concatLastCommitUrl(repInfo)
+
+	doc2 := Req2Doc(repInfo.RepUrl + "/commits/" + repInfo.RepBranchName)
+	ParseCommitsBySinglePage(doc2)
 }

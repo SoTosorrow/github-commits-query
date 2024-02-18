@@ -6,8 +6,8 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-func ReqRepHomePage(url string) *goquery.Document {
-	Ulog("request url:", url)
+func Req2Doc(url string) *goquery.Document {
+	Ulog(">>request url:", url)
 
 	res, err := http.Get(url)
 	if err != nil {
