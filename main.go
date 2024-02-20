@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 type RepInfo struct {
@@ -11,6 +13,17 @@ type RepInfo struct {
 	RepName       string
 	RepUrl        string
 	RepBranchName string
+}
+
+// TODO cache for requests
+type DocCollection struct {
+	RepHomeDoc        *goquery.Document
+	RepCommitsPageDoc []*goquery.Document
+	RepCommitIds      map[int]string
+}
+
+func (docs *DocCollection) GetCommitId(idx int) string {
+	return docs.RepCommitIds[idx]
 }
 
 func concatLastCommitUrl(repInfo RepInfo) {
@@ -41,7 +54,7 @@ func main() {
 	repInfo.NumCommits = ParseCommitsNum(doc)
 	repInfo.firstCommitId = ParseFirstCommitId(doc)
 	repInfo.RepBranchName = ParseBranchName(doc)
-	Ulog("repInfo:", repInfo)
+	// Ulog("repInfo:", repInfo)
 	concatLastCommitUrl(repInfo)
 
 	doc2 := Req2Doc(repInfo.RepUrl + "/commits/" + repInfo.RepBranchName)

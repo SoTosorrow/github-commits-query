@@ -23,7 +23,7 @@ func ParseCommitsNum(doc *goquery.Document) int {
 			}
 		})
 	if !strings.Contains(text, "Commits") {
-		Ulogf("parse target failed")
+		Ulogf("parse target failed", text)
 	}
 	// get 123 from "123 Commits"
 	target := strings.Join(
@@ -71,7 +71,7 @@ func ParseCommitsBySinglePage(doc *goquery.Document) {
 	err := json.Unmarshal([]byte(text), &result)
 	// Sometimes there will be a {"resolvedServerColorMode":"day"} at the end of the string, what the fuck is this
 	if err != nil {
-		Ulogf("parse json failed")
+		Ulogf("parse json failed", err)
 	}
 	oids := make([]string, 0)
 	for _, commitGroup := range result["payload"].(map[string]any)["commitGroups"].([]any) {
