@@ -2,10 +2,11 @@ package comb
 
 // inner struct
 type CombRules struct {
-	rules []string
+	rules   []string
+	address string
 }
 
-type ReqAndParse interface {
-	CombineAddress()
+type CombModal interface {
+	CombineAddress() string
 	RequestAndParse()
 }

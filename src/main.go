@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
+	"query/comb"
 	"query/util"
+	"sync"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -32,6 +34,26 @@ func concatLastCommitUrl(repInfo RepInfo) {
 	util.Ulog(commitsHistoryUrl)
 }
 
+func CollectCombs() {
+	// TODO more clear
+	hackerN := comb.NewCombHackern()
+	trend := comb.NewCombTrend()
+
+	reqCombs := []comb.CombModal{
+		&hackerN, &trend,
+	}
+
+	var wg sync.WaitGroup
+	for _, cb := range reqCombs {
+		wg.Add(1)
+		go func(modal comb.CombModal) {
+			defer wg.Done()
+			modal.RequestAndParse()
+		}(cb)
+	}
+	wg.Wait()
+}
+
 /*
 Steps As
 
@@ -41,6 +63,8 @@ Steps As
 	 https://github.com/{userName}/{repName}/commits/{branchName}?after={firstCommitId}+{commit nums - 2}
 */
 func main() {
+	// CollectCombs()
+	// return
 	args := os.Args
 	if len(args) != 2 {
 		util.Ulogf("cmd params nums not match")

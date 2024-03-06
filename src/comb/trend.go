@@ -1,7 +1,6 @@
 package comb
 
 import (
-	"query/enum"
 	"query/util"
 	"strings"
 
@@ -24,7 +23,7 @@ func (combTrend *CombTrend) SwitchTrendingType(typ string) {
 }
 
 func (combTrend *CombTrend) CombineAddress() string {
-	return enum.FullAddressTrending + "?since=" + combTrend.since
+	return combTrend.address + "?since=" + combTrend.since
 }
 
 func (combTrend *CombTrend) RequestAndParse() {

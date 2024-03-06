@@ -1,7 +1,6 @@
 package comb
 
 import (
-	"query/enum"
 	"query/util"
 	"strings"
 
@@ -13,7 +12,7 @@ type CombHackern struct {
 }
 
 func (combHackern *CombHackern) CombineAddress() string {
-	return enum.FullAddressHackerNews
+	return combHackern.address
 }
 
 func (combHackern *CombHackern) RequestAndParse() {
