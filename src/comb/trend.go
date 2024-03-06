@@ -15,15 +15,8 @@ const (
 )
 
 type CombTrend struct {
+	CombRules
 	since string
-	rules []string
-}
-
-func New() CombTrend {
-	return CombTrend{
-		since: TrendingDaily,
-		rules: []string{"main", ".Box", "article", "h2", "a"},
-	}
 }
 
 func (combTrend *CombTrend) SwitchTrendingType(typ string) {

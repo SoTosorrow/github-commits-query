@@ -7,6 +7,7 @@ const (
 	FullAddressNotifications string = "https://github.com/notifications"
 	FullAddressExplore       string = "https://github.com/explore"
 	FullAddressTrending      string = "https://github.com/trending"
+	FullAddressHackerNews    string = "https://news.ycombinator.com"
 
 	/*
 		** last check at 2024-3-06 **

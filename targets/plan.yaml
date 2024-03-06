@@ -10,4 +10,5 @@ user:
 search:
   explore: https://github.com/explore
   trend: https://github.com/trending # ?since=daily/weekly/monthly
+  hackernews: https://news.ycombinator.com/
 
