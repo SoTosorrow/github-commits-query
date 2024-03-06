@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 )
 
 func Req2Doc(url string) *goquery.Document {
-	Ulog(">>request url:", url)
+	Ulog(">> request url:", url)
 
 	res, err := http.Get(url)
 	if err != nil {

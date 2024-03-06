@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"encoding/json"
@@ -62,6 +62,12 @@ func ParseBranchName(doc *goquery.Document) string {
 
 func ParseCommitsBySinglePage(doc *goquery.Document) {
 	text := doc.Find(".application-main").Find("main").Find("script").Text()
+	// bad code
+	// Sometimes there will be a {"resolvedServerColorMode":"day"} at the end of the string, what the fuck is this
+	// this is a ugly handle for why this shit gonna appear a such words?
+	if text[len(text)-33:] == "{\"resolvedServerColorMode\":\"day\"}" {
+		text = text[:len(text)-33]
+	}
 	// Uwrite("./test", text)
 	// this is holy shit to parse the whole json. the structs is fucking too much, i would never do that
 	// i think is a good way for query value by loop Index() from the string and maybe it's fast?
@@ -69,7 +75,6 @@ func ParseCommitsBySinglePage(doc *goquery.Document) {
 	// although it is a ugly way and it is in here
 	var result map[string]any
 	err := json.Unmarshal([]byte(text), &result)
-	// Sometimes there will be a {"resolvedServerColorMode":"day"} at the end of the string, what the fuck is this
 	if err != nil {
 		Ulogf("parse json failed", err)
 	}

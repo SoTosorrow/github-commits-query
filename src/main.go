@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"query/util"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -28,7 +29,7 @@ func (docs *DocCollection) GetCommitId(idx int) string {
 
 func concatLastCommitUrl(repInfo RepInfo) {
 	commitsHistoryUrl := repInfo.RepUrl + "/commits/" + repInfo.RepBranchName + "?after=" + repInfo.firstCommitId + "+" + fmt.Sprint(repInfo.NumCommits-2)
-	Ulog(commitsHistoryUrl)
+	util.Ulog(commitsHistoryUrl)
 }
 
 /*
@@ -42,7 +43,7 @@ Steps As
 func main() {
 	args := os.Args
 	if len(args) != 2 {
-		Ulogf("cmd params nums not match")
+		util.Ulogf("cmd params nums not match")
 	}
 	repName := args[1]
 	url := "https://github.com/" + repName
@@ -50,13 +51,13 @@ func main() {
 		RepName: repName,
 		RepUrl:  url,
 	}
-	doc := Req2Doc(url)
-	repInfo.NumCommits = ParseCommitsNum(doc)
-	repInfo.firstCommitId = ParseFirstCommitId(doc)
-	repInfo.RepBranchName = ParseBranchName(doc)
+	doc := util.Req2Doc(url)
+	repInfo.NumCommits = util.ParseCommitsNum(doc)
+	repInfo.firstCommitId = util.ParseFirstCommitId(doc)
+	repInfo.RepBranchName = util.ParseBranchName(doc)
 	// Ulog("repInfo:", repInfo)
 	concatLastCommitUrl(repInfo)
 
-	doc2 := Req2Doc(repInfo.RepUrl + "/commits/" + repInfo.RepBranchName)
-	ParseCommitsBySinglePage(doc2)
+	doc2 := util.Req2Doc(repInfo.RepUrl + "/commits/" + repInfo.RepBranchName)
+	util.ParseCommitsBySinglePage(doc2)
 }

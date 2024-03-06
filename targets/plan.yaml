@@ -1,0 +1,13 @@
+# 20240306 all latest checked
+repository_commits_query:
+  main: https://github.com/SoTosorrow/HumanRuntime
+  commits_list: https://github.com/SoTosorrow/HumanRuntime/commits/master/
+  repositories: https://github.com/SoTosorrow?tab=repositories&q=&type=public&language=&sort= # todo
+
+user:
+  notify: https://github.com/notifications
+
+search:
+  explore: https://github.com/explore
+  trend: https://github.com/trending # ?since=daily/weekly/monthly
+
