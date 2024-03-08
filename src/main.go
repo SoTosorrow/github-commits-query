@@ -38,6 +38,8 @@ func CollectCombs() {
 	// TODO more clear
 	hackerN := comb.NewCombHackern()
 	trend := comb.NewCombTrend()
+	// perplexity := comb.NewCombPerplexity()
+	// productHunt := comb.NewCombProductHunt()
 
 	reqCombs := []comb.CombModal{
 		&hackerN, &trend,
@@ -61,6 +63,10 @@ Steps As
 	From html's script above get First Commit Id (by html:script-payload)
 	join string with "id" and "commit nums" for last Commit url like
 	 https://github.com/{userName}/{repName}/commits/{branchName}?after={firstCommitId}+{commit nums - 2}
+
+Build As
+
+	go build -ldflags="-s -w" .
 */
 func main() {
 	// CollectCombs()

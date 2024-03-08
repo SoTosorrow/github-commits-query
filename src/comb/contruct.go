@@ -23,3 +23,25 @@ func NewCombHackern() CombHackern {
 		CombRules: combRules,
 	}
 }
+
+// TODO Failed by robot intercept
+func NewCombPerplexity() CombPerplexity {
+	combRules := CombRules{
+		rules:   []string{"main", ".divide-y", ".flex", ".group"},
+		address: enum.FullAddressPerplexity,
+	}
+	return CombPerplexity{
+		CombRules: combRules,
+	}
+}
+
+// TODO Failed by robot intercept
+func NewCombProductHunt() CombProductHunt {
+	combRules := CombRules{
+		rules:   []string{"main", ".homepage-section-0", ".styles_item__Dk_nz", "div"},
+		address: enum.FullAddressProductHunt,
+	}
+	return CombProductHunt{
+		CombRules: combRules,
+	}
+}

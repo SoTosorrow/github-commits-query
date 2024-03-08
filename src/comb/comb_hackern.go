@@ -11,15 +11,15 @@ type CombHackern struct {
 	CombRules
 }
 
-func (combHackern *CombHackern) CombineAddress() string {
-	return combHackern.address
+func (comb *CombHackern) CombineAddress() string {
+	return comb.address
 }
 
-func (combHackern *CombHackern) RequestAndParse() {
-	targetAddress := combHackern.CombineAddress()
+func (comb *CombHackern) RequestAndParse() {
+	targetAddress := comb.CombineAddress()
 
 	doc := util.Req2Doc(targetAddress)
-	sel := util.MapFind(doc, combHackern.rules)
+	sel := util.MapFind(doc, comb.rules)
 
 	sel.Each(func(i int, s *goquery.Selection) {
 		href, _ := s.Attr("href")

@@ -22,15 +22,15 @@ func (combTrend *CombTrend) SwitchTrendingType(typ string) {
 	combTrend.since = typ
 }
 
-func (combTrend *CombTrend) CombineAddress() string {
-	return combTrend.address + "?since=" + combTrend.since
+func (comb *CombTrend) CombineAddress() string {
+	return comb.address + "?since=" + comb.since
 }
 
-func (combTrend *CombTrend) RequestAndParse() {
-	targetAddress := combTrend.CombineAddress()
+func (comb *CombTrend) RequestAndParse() {
+	targetAddress := comb.CombineAddress()
 
 	doc := util.Req2Doc(targetAddress)
-	sel := util.MapFind(doc, combTrend.rules)
+	sel := util.MapFind(doc, comb.rules)
 
 	sel.Each(func(i int, s *goquery.Selection) {
 		text := s.Text()

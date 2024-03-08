@@ -8,6 +8,8 @@ const (
 	FullAddressExplore       string = "https://github.com/explore"
 	FullAddressTrending      string = "https://github.com/trending"
 	FullAddressHackerNews    string = "https://news.ycombinator.com"
+	FullAddressPerplexity    string = "https://www.perplexity.ai/discover"
+	FullAddressProductHunt   string = "https://www.producthunt.com/"
 
 	/*
 		** last check at 2024-3-06 **
